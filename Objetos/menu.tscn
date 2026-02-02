@@ -1,0 +1,217 @@
+[gd_scene load_steps=18 format=3 uid="uid://xh5qsfm6xiww"]
+
+[ext_resource type="Script" uid="uid://cn1m3uf413dyh" path="res://Script/menu.gd" id="1_yjdpn"]
+[ext_resource type="Texture2D" uid="uid://cqmon6dby4y50" path="res://Imagenes/bg_0.png" id="2_de1ng"]
+[ext_resource type="Texture2D" uid="uid://c26lqibtlmk8o" path="res://Imagenes/ChatGPT Image 15 nov 2025, 14_01_27.png" id="3_1nddg"]
+[ext_resource type="Texture2D" uid="uid://dva1ghhwxornw" path="res://Imagenes/tilset/play.png" id="4_vpcui"]
+[ext_resource type="AudioStream" uid="uid://i3yewx88lg5h" path="res://Sonidos/menu.mp3" id="5_ox5an"]
+[ext_resource type="AudioStream" uid="uid://7lwqi5tab8og" path="res://Sonidos/play.ogg" id="6_ch603"]
+[ext_resource type="Texture2D" uid="uid://bme5vaaxb2jed" path="res://Imagenes/geometry-dash-splash-image-sprites-v0-4a8dfqah9fmc1.webp" id="6_h8ome"]
+[ext_resource type="Texture2D" uid="uid://cetxcv3moouk" path="res://Imagenes/close.png" id="7_de1ng"]
+[ext_resource type="Texture2D" uid="uid://bc0sttfe80pm1" path="res://Imagenes/sprites.png" id="7_kbb7o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8ome"]
+atlas = ExtResource("6_h8ome")
+region = Rect2(504, 265.5, 166, 169)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6muys"]
+atlas = ExtResource("7_kbb7o")
+region = Rect2(1882.2899, 1581.11, 192.39001, 193.6001)
+
+[sub_resource type="Animation" id="Animation_fnf00"]
+resource_name = "play"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jugar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.375, 0.375), Vector2(0.538462, 0.538462), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_kbb7o"]
+resource_name = "Confi2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ajustes:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.375, 0.375), Vector2(0.538462, 0.538462), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.0666666),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"salida"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6muys"]
+resource_name = "Invent"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventario:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.375, 0.375), Vector2(0.538462, 0.538462), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.0666666),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"entrarInventario"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_31flo"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jugar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jugar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(481, 269)]
+}
+
+[sub_resource type="Animation" id="Animation_vpcui"]
+resource_name = "Salida"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Salir:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.375, 0.375), Vector2(0.538462, 0.538462), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.0666666),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"salida"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yk7gt"]
+_data = {
+&"Comienzo": SubResource("Animation_fnf00"),
+&"Confi2": SubResource("Animation_kbb7o"),
+&"Invent": SubResource("Animation_6muys"),
+&"RESET": SubResource("Animation_31flo"),
+&"Salida": SubResource("Animation_vpcui")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yjdpn")
+
+[node name="FondoInicio" type="Sprite2D" parent="."]
+modulate = Color(0.633176, 0.06785009, 0, 1)
+position = Vector2(585.5, 169.49977)
+scale = Vector2(0.571777, 0.5493162)
+texture = ExtResource("2_de1ng")
+
+[node name="Inventario" type="TouchScreenButton" parent="."]
+position = Vector2(32, 409)
+scale = Vector2(0.5, 0.5)
+texture_normal = SubResource("AtlasTexture_h8ome")
+
+[node name="Titulo" type="Sprite2D" parent="."]
+position = Vector2(569, 134)
+scale = Vector2(0.581009, 0.581009)
+texture = ExtResource("3_1nddg")
+
+[node name="Salir" type="TouchScreenButton" parent="."]
+position = Vector2(24, 194)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_de1ng")
+
+[node name="Jugar" type="TouchScreenButton" parent="."]
+position = Vector2(481, 269)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_vpcui")
+
+[node name="Ajustes" type="TouchScreenButton" parent="."]
+position = Vector2(28, 303)
+scale = Vector2(0.4671118, 0.46112654)
+texture_normal = SubResource("AtlasTexture_6muys")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yk7gt")
+}
+
+[node name="menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ox5an")
+autoplay = true
+bus = &"MenuMusica"
+
+[node name="SonidoComienzo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ch603")
+
+[connection signal="pressed" from="Inventario" to="." method="_on_inventario_pressed"]
+[connection signal="pressed" from="Salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="Jugar" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="Ajustes" to="." method="_on_ajustes_pressed"]

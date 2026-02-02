@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://c137eb28v4nq1"]
+
+[ext_resource type="Script" uid="uid://x1lo3n8heqdb" path="res://Script/jugador.gd" id="1_u5d4a"]
+[ext_resource type="Texture2D" uid="uid://dy5q43l3eb53m" path="res://Imagenes/Mobile - Geometry Dash - Characters - Cubes.png" id="2_73icg"]
+[ext_resource type="Script" uid="uid://btb81gqxwhffk" path="res://Script/MuerteProta.gd" id="3_73icg"]
+[ext_resource type="Script" uid="uid://dyn75pr4b2eka" path="res://Script/MuertePinchos.gd" id="3_u50pd"]
+[ext_resource type="AudioStream" uid="uid://dyrtasdr0hsif" path="res://Sonidos/MuerteProta.ogg" id="5_064mt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y85yb"]
+atlas = ExtResource("2_73icg")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c27g"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73icg"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5d4a"]
+size = Vector2(32, 32)
+
+[node name="BloqueJugador" type="CharacterBody2D"]
+script = ExtResource("1_u5d4a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.4999995, 3.0000021)
+scale = Vector2(0.53389835, 0.51282054)
+texture = SubResource("AtlasTexture_y85yb")
+region_enabled = true
+region_rect = Rect2(658.2051, 456.60983, 118.394775, 117.70004)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 3)
+shape = SubResource("RectangleShape2D_4c27g")
+
+[node name="Exterior" type="Area2D" parent="."]
+script = ExtResource("3_u50pd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exterior"]
+position = Vector2(-2, 2.5)
+shape = SubResource("RectangleShape2D_73icg")
+debug_color = Color(0.7600058, 0.18172449, 0.99999994, 0.41960785)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_73icg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_u5d4a")
+debug_color = Color(0.827451, 0, 0.18039216, 0.41960785)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_064mt")
+
+[connection signal="area_entered" from="Exterior" to="." method="_on_exterior_area_entered"]
+[connection signal="area_entered" from="Exterior" to="Exterior" method="_on_area_entered"]
+[connection signal="area_exited" from="Exterior" to="." method="_on_exterior_area_exited"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

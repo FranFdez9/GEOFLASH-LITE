@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://btbvr56j5r6jd"]
+
+[ext_resource type="Script" uid="uid://bck84aekikb5e" path="res://Script/suelo.gd" id="1_7lpsn"]
+[ext_resource type="Texture2D" uid="uid://ietv5gbb5a5o" path="res://Imagenes/groundSquare_01_001.png" id="2_myeao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rmv7"]
+size = Vector2(2176, 128)
+
+[node name="suelo" type="StaticBody2D"]
+script = ExtResource("1_7lpsn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("2_myeao")
+region_enabled = true
+region_rect = Rect2(0, 0, 2100, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2rmv7")

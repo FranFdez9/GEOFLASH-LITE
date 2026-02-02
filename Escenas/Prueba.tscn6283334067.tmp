@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://u7sltjvr87nk"]
+
+[ext_resource type="PackedScene" uid="uid://c137eb28v4nq1" path="res://Objetos/bloque_jugador.tscn" id="1_p6pa3"]
+[ext_resource type="PackedScene" uid="uid://degkt0sh2y3nm" path="res://Objetos/Bloque.tscn" id="2_x77hp"]
+[ext_resource type="PackedScene" uid="uid://dpr8d8ulwyyx0" path="res://Objetos/Pincho.tscn" id="3_x77hp"]
+[ext_resource type="PackedScene" uid="uid://btbvr56j5r6jd" path="res://Objetos/suelo.tscn" id="4_8jtcb"]
+[ext_resource type="PackedScene" uid="uid://d3osprvdoxb8o" path="res://Objetos/orbe_salto.tscn" id="5_vecvj"]
+[ext_resource type="PackedScene" uid="uid://cp3283utj0ee5" path="res://Objetos/trampolines.tscn" id="6_v04t1"]
+[ext_resource type="PackedScene" uid="uid://54q3pp2yo4aj" path="res://Objetos/portal.tscn" id="7_70qqq"]
+
+[node name="EscenaPrueba" type="Node2D"]
+
+[node name="BloqueJugador" parent="." instance=ExtResource("1_p6pa3")]
+position = Vector2(32, 563)
+
+[node name="Camera2D" type="Camera2D" parent="BloqueJugador"]
+offset = Vector2(300, 0)
+zoom = Vector2(1.4, 1.4)
+limit_left = -437
+limit_top = -9999998
+limit_right = 9999963
+limit_bottom = 722
+drag_vertical_enabled = true
+drag_top_margin = 0.4
+drag_bottom_margin = 0.4
+editor_draw_drag_margin = true
+
+[node name="suelo" parent="." instance=ExtResource("4_8jtcb")]
+position = Vector2(799, 730)
+
+[node name="Bloque2" parent="." instance=ExtResource("2_x77hp")]
+position = Vector2(704, 640)
+
+[node name="Bloque3" parent="." instance=ExtResource("2_x77hp")]
+position = Vector2(640, 640)
+
+[node name="Bloque4" parent="." instance=ExtResource("2_x77hp")]
+position = Vector2(256, 640)
+
+[node name="Bloque5" parent="." instance=ExtResource("2_x77hp")]
+position = Vector2(1024, 640)
+
+[node name="Bloque6" parent="." instance=ExtResource("2_x77hp")]
+position = Vector2(1024, 576)
+
+[node name="Bloque7" parent="." instance=ExtResource("2_x77hp")]
+position = Vector2(1152, 512)
+
+[node name="Area2D" parent="." instance=ExtResource("3_x77hp")]
+position = Vector2(832, 640)
+
+[node name="Area2D2" parent="." instance=ExtResource("3_x77hp")]
+position = Vector2(1408, 640)
+
+[node name="OrbeSalto" parent="." instance=ExtResource("5_vecvj")]
+position = Vector2(1309, 448)
+
+[node name="trampolines" parent="." instance=ExtResource("6_v04t1")]
+position = Vector2(1628, 656)
+
+[node name="trampolines2" parent="." instance=ExtResource("6_v04t1")]
+position = Vector2(1884, 656)
+
+[node name="trampolines3" parent="." instance=ExtResource("6_v04t1")]
+position = Vector2(2116, 658)
+
+[node name="portales" parent="." instance=ExtResource("7_70qqq")]
+position = Vector2(2377, 489)
+tipo = 3
+
+[node name="portales2" parent="." instance=ExtResource("7_70qqq")]
+position = Vector2(3281, -3)
+
+[node name="portales3" parent="." instance=ExtResource("7_70qqq")]
+position = Vector2(4166, 439)
+tipo = 1
+
+[node name="Area2D3" parent="." instance=ExtResource("3_x77hp")]
+position = Vector2(3267, 612)

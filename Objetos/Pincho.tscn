@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpr8d8ulwyyx0"]
+
+[ext_resource type="Texture2D" uid="uid://btq5ecfuh7lnq" path="res://Imagenes/tilset/tiles.png" id="1_qmcmq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idnmr"]
+atlas = ExtResource("1_qmcmq")
+region = Rect2(125.273224, 1.3979568, 116.52896, 118.350876)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0avms"]
+size = Vector2(20, 10)
+
+[node name="Area2D" type="Area2D" groups=["Muertes"]]
+scale = Vector2(-0.44047794, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.95666176, 0.5124773)
+texture = SubResource("AtlasTexture_idnmr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Muertes"]]
+scale = Vector2(1, 4.4400964)
+shape = SubResource("RectangleShape2D_0avms")

@@ -1,0 +1,239 @@
+[gd_scene load_steps=18 format=3 uid="uid://c137eb28v4nq1"]
+
+[ext_resource type="Script" uid="uid://x1lo3n8heqdb" path="res://Script/jugador.gd" id="1_ruqay"]
+[ext_resource type="Texture2D" uid="uid://bduaew4hqpsf2" path="res://Imagenes/cuboPrincipal.tres" id="2_064mt"]
+[ext_resource type="Texture2D" uid="uid://dy5q43l3eb53m" path="res://Imagenes/Mobile - Geometry Dash - Characters - Cubes.png" id="2_73icg"]
+[ext_resource type="Script" uid="uid://btb81gqxwhffk" path="res://Script/MuerteProta.gd" id="3_73icg"]
+[ext_resource type="Script" uid="uid://dyn75pr4b2eka" path="res://Script/MuertePinchos.gd" id="3_u50pd"]
+[ext_resource type="AudioStream" uid="uid://dyrtasdr0hsif" path="res://Sonidos/MuerteProta.ogg" id="5_064mt"]
+[ext_resource type="Texture2D" uid="uid://ipbhxis85c6y" path="res://Imagenes/sheets.png" id="6_mwr7t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c27g"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73icg"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5d4a"]
+size = Vector2(32, 32)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rsn2p"]
+emission_shape = 1
+emission_sphere_radius = 41.55
+gravity = Vector3(-200, 0, 0)
+scale_min = 7.25
+scale_max = 20.75
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruqay"]
+atlas = ExtResource("6_mwr7t")
+region = Rect2(315.48993, 290.66254, 174.68506, 98.734985)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsn2p"]
+atlas = ExtResource("6_mwr7t")
+region = Rect2(537.0886, 421.26407, 125.317505, 87.34253)
+
+[sub_resource type="Animation" id="Animation_soo1i"]
+resource_name = "RESET"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("die_particles")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("die_particles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_d1cm3"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("die_particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dwj8"]
+_data = {
+&"RESET": SubResource("Animation_soo1i"),
+&"die": SubResource("Animation_d1cm3")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ruqay"]
+lifetime_randomness = 1.0
+spread = 180.0
+initial_velocity_min = 166.66
+initial_velocity_max = 439.39
+gravity = Vector3(0, 0, 0)
+scale_max = 33.36
+
+[node name="BloqueJugador" type="CharacterBody2D"]
+script = ExtResource("1_ruqay")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.0000014, 4.5)
+scale = Vector2(0.5423729, 0.53846157)
+texture = ExtResource("2_73icg")
+region_enabled = true
+region_rect = Rect2(658.2051, 456.60983, 118.394775, 117.70004)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 3)
+shape = SubResource("RectangleShape2D_4c27g")
+
+[node name="Exterior" type="Area2D" parent="."]
+script = ExtResource("3_u50pd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exterior"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_73icg")
+debug_color = Color(0.7600058, 0.18172449, 0.99999994, 0.41960785)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_73icg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_u5d4a")
+debug_color = Color(0.827451, 0, 0.18039216, 0.41960785)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_064mt")
+
+[node name="UFO" type="Node2D" parent="."]
+visible = false
+
+[node name="cubo" type="Sprite2D" parent="UFO"]
+modulate = Color(1, 0, 0.043137256, 1)
+position = Vector2(0, -8)
+scale = Vector2(0.41525424, 0.3445378)
+texture = ExtResource("2_064mt")
+
+[node name="nave" type="Sprite2D" parent="UFO"]
+modulate = Color(1, 0.32156864, 0.2, 1)
+position = Vector2(1, 19)
+scale = Vector2(0.5858209, 0.47947758)
+texture = ExtResource("6_mwr7t")
+hframes = 5
+vframes = 10
+frame = 16
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UFO"]
+position = Vector2(-61, 32)
+scale = Vector2(0.992537, 0.992537)
+amount = 20
+amount_ratio = 0.8077
+process_material = SubResource("ParticleProcessMaterial_rsn2p")
+
+[node name="NAVE" type="Node2D" parent="."]
+visible = false
+position = Vector2(-2, 4)
+
+[node name="cubo" type="Sprite2D" parent="NAVE"]
+modulate = Color(1, 0.023529412, 0.007843138, 1)
+position = Vector2(0, -2)
+scale = Vector2(0.25847456, 0.21953781)
+texture = ExtResource("2_064mt")
+
+[node name="avion" type="Sprite2D" parent="NAVE"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(1.0000017, 14.499999)
+scale = Vector2(0.40229884, 0.39795914)
+texture = SubResource("AtlasTexture_ruqay")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="NAVE"]
+position = Vector2(-56, 32)
+scale = Vector2(0.6, 0.6)
+amount = 20
+amount_ratio = 0.8077
+process_material = SubResource("ParticleProcessMaterial_rsn2p")
+
+[node name="WAVE" type="Node2D" parent="."]
+visible = false
+
+[node name="flecha" type="Sprite2D" parent="WAVE"]
+modulate = Color(1, 0, 0, 1)
+z_index = 1
+position = Vector2(-0.5000007, 4.0000014)
+scale = Vector2(0.47199997, 0.6896551)
+texture = SubResource("AtlasTexture_rsn2p")
+
+[node name="RUEDA" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RUEDA"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-2, 4)
+scale = Vector2(0.42253518, 0.46153846)
+texture = ExtResource("6_mwr7t")
+region_enabled = true
+region_rect = Rect2(530.8957, 269.86713, 142.74988, 130.45563)
+
+[node name="die_ani" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5dwj8")
+}
+
+[node name="die_particles" type="GPUParticles2D" parent="."]
+position = Vector2(7, 1)
+emitting = false
+amount = 235
+one_shot = true
+speed_scale = 1.86
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ruqay")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, 0)
+offset = Vector2(400, 0)
+zoom = Vector2(1.2, 1.2)
+limit_left = -400
+limit_bottom = 720
+
+[node name="WaveTrail" type="Line2D" parent="."]
+position = Vector2(-4.6000023, 0)
+scale = Vector2(1.05, 1)
+points = PackedVector2Array(2.4761927, 1)
+antialiased = true
+
+[connection signal="area_entered" from="Exterior" to="." method="_on_exterior_area_entered"]
+[connection signal="area_entered" from="Exterior" to="Exterior" method="_on_area_entered"]
+[connection signal="area_exited" from="Exterior" to="." method="_on_exterior_area_exited"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

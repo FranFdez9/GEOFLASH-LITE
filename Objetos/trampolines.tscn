@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://cp3283utj0ee5"]
+
+[ext_resource type="Script" uid="uid://di543p8u45frs" path="res://Script/trampolines.gd" id="1_75g8e"]
+[ext_resource type="Texture2D" uid="uid://ipbhxis85c6y" path="res://Imagenes/sheets.png" id="2_sigc2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sogvy"]
+size = Vector2(76, 27)
+
+[sub_resource type="Curve" id="Curve_75g8e"]
+_data = [Vector2(0, 0.954717), 0.0, 0.046771, 0, 0, Vector2(1, 0), -0.055346, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_sigc2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_61mag"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_pl512"]
+curve_x = SubResource("Curve_75g8e")
+curve_y = SubResource("Curve_sigc2")
+curve_z = SubResource("Curve_61mag")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1xj5e"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(53.53, 1, 1)
+gravity = Vector3(0, -100, 0)
+scale_max = 8.6
+scale_curve = SubResource("CurveXYZTexture_pl512")
+
+[node name="trampolines" type="Area2D" groups=["pad"]]
+script = ExtResource("1_75g8e")
+
+[node name="Point" type="Sprite2D" parent="."]
+position = Vector2(-2.0000153, 1.0000026)
+scale = Vector2(0.57352954, 0.55813956)
+texture = ExtResource("2_sigc2")
+region_enabled = true
+region_rect = Rect2(272.0348, 232.6867, 124.71228, 36.814453)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -0.5)
+shape = SubResource("RectangleShape2D_sogvy")
+
+[node name="particles" type="GPUParticles2D" parent="." groups=["pad"]]
+z_index = -4
+z_as_relative = false
+position = Vector2(-2, 9)
+scale = Vector2(0.5, 0.5)
+amount = 30
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_1xj5e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="pad_activado" from="." to="." method="_on_pad_activado"]

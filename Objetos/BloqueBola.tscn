@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://m86dlwlwvlb7"]
+
+[ext_resource type="Texture2D" uid="uid://btq5ecfuh7lnq" path="res://Imagenes/tilset/tiles.png" id="1_amw12"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_do8pq"]
+size = Vector2(64, 64)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.0000006, -1.0000021)
+scale = Vector2(0.59259254, 0.5981308)
+texture = ExtResource("1_amw12")
+region_enabled = true
+region_rect = Rect2(494.8677, 372.38565, 108.7233, 107.95224)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_do8pq")
